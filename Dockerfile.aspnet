@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 as build
 
-ARG GH_USERNAME # Имя учетки GitHub
-ARG GH_TOKEN    # GitHub personal access token или другой подходящий способ авторизации
+# Имя учетки GitHub
+ARG GH_USERNAME 
+# GitHub personal access token или другой подходящий способ авторизации
+ARG GH_TOKEN    
 
 WORKDIR /app 
 COPY . .
@@ -15,4 +17,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 as runtime
 WORKDIR /app
 COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://*:8080
-ENTRYPOINT ["dotnet", "<Имя сборки>.dll"] # Имя исполняемой сборки
+# Имя исполняемой сборки
+ENTRYPOINT ["dotnet", "<Имя сборки>.dll"] 
